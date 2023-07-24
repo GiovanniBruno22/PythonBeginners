@@ -1,32 +1,44 @@
 import tkinter as tk
 from tkinter import messagebox
 
-# Function to check winner. 
-# We go through rows first and what we use list comprehension
-# board is the board and player can be x or o and all(cell == player for cell in row ) will check
-# if all the cell in a given row are equal to x or o
+# Function to check winner and we go through rows first we will check if all the cell in a given row are equal to x or o.
 # This is repeated for columns and finally the board[i][i] is the diagonal \ 
 # and the board[i][2 - i] is the diagonal /
 # We will check one player first, x or o, and exit this function by returning True (mean the player has won)
 # if any of the checks bools from the all function are returned as true. Otherwise, we return false and by
 # this we mean that the game is not over
-
 def check_winner(board, player):
-    for row in board:
-        if all(cell == player for cell in row):
+    # check rows
+    for row in range(3):
+        row_temp = []
+        for col in range(3):
+            row_temp.append(board[row][col])
+        if all(cell == player for cell in row_temp):
             return True
+    # check cols
     for col in range(3):
-        if all(board[row][col] == player for row in range(3)):
-            return True
-    if all(board[i][i] == player for i in range(3)):
+        col_temp = []
+        for row in range(3):
+            col_temp.append(board[row][col])
+        if all(cell == player for cell in col_temp):
+            return True    
+    # check diagonal 1
+    diag1 = []
+    for ind in range(3):
+        diag1.append(board[ind][ind])
+    if all(cell == player for cell in diag1):
         return True
-    if all(board[i][2 - i] == player for i in range(3)):
+    # check diagonal 1
+    diag2 = []
+    for ind in range(3):
+        diag2.append(board[ind][2 - ind])
+    if all(cell == player for cell in diag2):
         return True
     return False
 
 # Here we are checking if the board is full. Initially each cell or square or element in the 3x3 array 
 # has an single space " ". If they are all not " " meaning that there is no single square that is a " "
-# then we will return true , ie. the board is full.
+# then we will return true , ie. the board is full. 
 
 def is_board_full(board):
     return all(board[i][j] != " " for i in range(3) for j in range(3))
@@ -45,12 +57,16 @@ def on_click(row, col):
     if not check_winner(board, "X") and not check_winner(board, "O") and not is_board_full(board):
         if board[row][col] == " ":
             player = players[turn % 2]
+            # Update the button on tkinter
             buttons[row][col].config(text=player)
+            # Update the cell value on the board
             board[row][col] = player
             turn += 1
 
+            # check for winners and print message in message box
             if check_winner(board, player):
-                messagebox.showinfo("Game Over", f"Player {player} wins!")
+                message = "Player " + player +" wins!"
+                messagebox.showinfo("Game Over", message)
             elif is_board_full(board):
                 messagebox.showinfo("Game Over", "It's a draw!")
 
@@ -92,6 +108,7 @@ if __name__ == "__main__":
             buttons[i][j] = tk.Button(window, width=10, height=3, font=("Helvetica", 20),
                                       command=lambda row=i, col=j: on_click(row, col))
             buttons[i][j].grid(row=i, column=j)
+            
     # Now we include a reset button that calls the reset_game function
     reset_button = tk.Button(window, text="Reset", font=("Helvetica", 16), command=reset_game)
     reset_button.grid(row=3, columnspan=3)
