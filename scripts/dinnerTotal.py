@@ -6,9 +6,12 @@ def total_bill(amount, tip_percentage):
     return sum_owed
 
 def random_bill_amount():
-    return random.uniform(10, 200)
+    return round(random.uniform(10, 200),2)
 
 print("Here is your Bill")
 dinner_bill = random_bill_amount()
 
 print(f"dinner amount is: {dinner_bill}" )
+
+user_tip = float(input("How much would you like to tip? "))
+
