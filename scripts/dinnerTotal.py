@@ -21,7 +21,7 @@ print(f"Total due (including tip): {total_due}")
 amount_payable =float(input("Enter amount you are paying with:"))
 
 if amount_payable >= total_due:
-    change = amount_payable - total_due
+    change = round(amount_payable - total_due,2)
     print(f"Thank you for your payment. Your change is: {change}")
 else:
     print("The amount paid is insufficient. Please pay the full amount.")
