@@ -1,18 +1,17 @@
 # imports
 import time
-from datetime import timezone, timedelta
-import datetime
+from datetime import timezone, timedelta, datetime
 
 def time_is_relative():
     '''
     This script displays the time in London/New York/Mumbai when run from the terminal
     '''
     # getting utc time
-    dt = datetime.datetime.now(timezone.utc)
+    dt = datetime.now(timezone.utc)
     utc_timestamp = dt.replace(tzinfo=timezone.utc)
 
     # define list of tuples for timezone deltas accounting for DST
-    deltas = [('London', 1), ('New York', -5 + time.daylight), ('Mumbai', 6)]
+    deltas = [('London', 1), ('New York', -5 + time.daylight), ('Mumbai', 5.5)]
 
     #iterate over time deltas for different cities, formatting, and printing
     for i, j in deltas:
