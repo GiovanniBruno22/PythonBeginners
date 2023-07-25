@@ -1,13 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox
 
-# Function to check winner and we go through rows first we will check if all the cell in a given row are equal to x or o.
-# This is repeated for columns and finally the board[i][i] is the diagonal \ 
-# and the board[i][2 - i] is the diagonal /
-# We will check one player first, x or o, and exit this function by returning True (mean the player has won)
-# if any of the checks bools from the all function are returned as true. Otherwise, we return false and by
-# this we mean that the game is not over
 def check_winner(board, player):
+
+    """Checks if player has won
+    
+        Args: board (str list) , the board represented as a list of strings and player (str) either X or O
+    
+        Returns: (bool) , true if the the given player has won, false if not
+    """
     # check rows
     for row in range(3):
         row_temp = []
@@ -28,7 +29,7 @@ def check_winner(board, player):
         diag1.append(board[ind][ind])
     if all(cell == player for cell in diag1):
         return True
-    # check diagonal 1
+    # check diagonal 2
     diag2 = []
     for ind in range(3):
         diag2.append(board[ind][2 - ind])
@@ -36,23 +37,20 @@ def check_winner(board, player):
         return True
     return False
 
-# Here we are checking if the board is full. Initially each cell or square or element in the 3x3 array 
-# has an single space " ". If they are all not " " meaning that there is no single square that is a " "
-# then we will return true , ie. the board is full. 
-
 def is_board_full(board):
+    """Checks if the board is full.
+    
+        Args: board (str list) , the board represented as a list of strings
+    
+        Returns: (bool) , true if the board is full, false if not
+    """
     return all(board[i][j] != " " for i in range(3) for j in range(3))
 
-# turn is a global variable because it is assigned and used outside of this function. If we didnt say
-# global then it would only live inside this function. 
-# First off we are checking that neither player has won and the board is not full. 
-# Otherwise we couldn't make a move. Next we check if the cell is empty.
-# As the player alternates with each turn we can find out which player it is by taking turn and finding 
-# its after dividing by 2. This will give either 0 or 1, which is x or o. The cell is then assigned 
-# the player number, 0 or 1, and the turn is incremented by 1. 
-# Again we check the winner or if the board is full
-
 def on_click(row, col):
+    """Adds an X or O to the cell, checks if player has won or if board is full and increments global turn counter.
+    
+        Args: row and col (ints)
+    """
     global turn
     if not check_winner(board, "X") and not check_winner(board, "O") and not is_board_full(board):
         if board[row][col] == " ":
@@ -70,14 +68,11 @@ def on_click(row, col):
             elif is_board_full(board):
                 messagebox.showinfo("Game Over", "It's a draw!")
 
-# Reset game simple returns board to a 3x3 filled with " "s.
-# turn is also reset to 0 meaning xs turn.
-# Here turn and board are global variables. 
-# The reason is that these variables are used outside this function.
-# tk.NORMAL is a tkinter user interface thing. Basically each of the cells in the user interface 
-# has a state that we want to set. When we hover over it will change colour or when we click on it 
-# its state will change. 
+
 def reset_game():
+    """Resets global variables board and turn
+    
+    """
     global board, turn
     board = [[" " for _ in range(3)] for _ in range(3)]
     turn = 0
