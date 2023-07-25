@@ -1,10 +1,11 @@
 # PythonBeginners
 
 This is a list of helpful basic python scripts, applications and games added by the community and reviewed by the community.
+Don't forget to star this repository!
 
 ## Purpose
 
-This repository is meant for new developers to submit first pull requests to and get reviews from peers, do not be afraid to help others by reviewing their code!
+This repository is meant for new developers to submit first pull requests to and get reviews from peers, do not be afraid to help others by reviewing their code.
 
 ## Contribution
 
