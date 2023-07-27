@@ -36,10 +36,5 @@ if __name__ == '__main__':
        password_length = int(input("Enter the length of the password greater than 3: "))
        passwordd = generate_password(password_length)
        print("Generated Password:", passwordd)
-    except ValueError:
-        print("Invalid input. Please enter an integer greater than 4 for the password length.")
-     
-
-
-
-
+    except ValueError as e:
+        print("Error: ", e)
