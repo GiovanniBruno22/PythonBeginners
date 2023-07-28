@@ -2,10 +2,10 @@ import random
 import string
 
 
+def generate_password(length):
 # Generates a random password of a specified length.
 # (int)length, which indicates the desired length of the password.
 # returns a password as a string.
-def generate_password(length):
     
     if length < 4:
         raise ValueError("Password length must be at least 4 to ensure all categories.")
