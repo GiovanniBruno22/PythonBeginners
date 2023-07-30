@@ -13,6 +13,11 @@ def roots(a,b,c):
     x2 = (-b - ((b ** 2 - 4 * a * c) ** 0.5)) / (2 * a)
     print("The roots are:", x1, " and ", x2)
 
-if __name__ == "__main__":
+def main():
     a, b, c = input("Enter the values of a, b, and c (seperated by commas) for the equation ax^2 + bx + c = 0 : ").split(',')
     roots(a,b,c)
+    
+
+if __name__ == "__main__":
+    main()
+
