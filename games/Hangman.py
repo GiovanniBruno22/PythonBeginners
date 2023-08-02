@@ -1,11 +1,14 @@
 import random
 
-# simple terminal hangman game with ASCII art
+# Simple terminal hangman game with ASCII art
 def choose_random_word():
     word_list = ["hangman", "python", "programming", "developer", "challenge", "knowledge"]
     return random.choice(word_list)
 
 def display_word(word, guessed_letters):
+    """Chooses a random word between the ones listed in word_List
+        Returns: (str) the chosen word.
+    """
     display = ''
     for letter in word:
         if letter in guessed_letters:
@@ -15,6 +18,9 @@ def display_word(word, guessed_letters):
     return display
 
 def draw_hangman(attempts):
+    """ Draws different stages of the Hangman game in ASCII art style,
+        based on the current number of attemps.
+    """
     hangman_stages = [
         """
            ------
@@ -78,10 +84,16 @@ def draw_hangman(attempts):
 
 def hangman():
     word_to_guess = choose_random_word()
-    max_attempts = len(word_to_guess) + 2
     guessed_letters = []
     attempts = 0
-
+    max_attempts = 6
+    
+    """Determine the current number of attempts and draw the hangman art.
+    
+       If the player have successfully guessed the word,
+       print a winning message. Else, if the player exceeded the 
+       maximum number of attempts, print the losing message.
+    """
     print("Welcome to Hangman!")
     print(display_word(word_to_guess, guessed_letters))
 
