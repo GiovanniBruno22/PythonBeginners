@@ -27,8 +27,7 @@ Cipher = {
   "Z": "W"
 }
 
-if __name__ == "__main__":
-
+def main():
   print("Please enter a text to cipher: ")
   text = input()
   output = ""
@@ -43,3 +42,6 @@ if __name__ == "__main__":
       output += a
 
   print("Your ciphered message is: ", output)
+
+if __name__ == "__main__":
+  main()
