@@ -15,6 +15,11 @@ entry.grid(row=1, column=0, pady=10)
 timer_label = tk.Label(root, text="", font=("Times",48))
 
 def display_timer(seconds):
+    """
+    Display the timer countdown and play a sound once the countdown is done. After the countdown is done the application is reset and
+    waits for another countdown or user input.
+    Args: seconds: The number of seconds for the timer (int).
+    """
     entry.delete(0,tk.END)
     while seconds >= 0:
         timer_label.config(text=f"Time left: {seconds} seconds")
@@ -33,6 +38,10 @@ def display_timer(seconds):
 
     
 def start_timer():
+    """
+    Starts the countdown timer by getting value from the entry widget.
+    Makes the widget for the countdown timer visable in the UI
+    """
     entry_string = entry.get()
     if(entry_string == "" or not entry_string.isdigit()):
         error_label.grid(row=3, column=0, pady=1)
