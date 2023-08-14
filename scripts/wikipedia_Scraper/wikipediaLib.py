@@ -1,30 +1,37 @@
 import wikipedia
 
-def switch(answer):
-    # switch statement to determine if user wants to read the article
-    if answer == "y":
+def getUserInput(article_title):
+    answer = input(f"Would you like to read {article_title}? (yes/no): ").lower()
+    
+    if answer == 'yes':
         return False
-    elif answer == "yes":
+    elif answer == 'y':
         return False
-    elif answer == "n":
+    elif answer == 'no':
+        return True 
+    elif answer == 'n':
         return True
-    elif answer == "no":
-        return True
+    else:
+        print("Invalid input. Please enter 'yes' or 'no'.")
+        getUserInput(article_title)  # Recursive call to prompt again
 
-# Set the language for the Wikipedia instance (e.g., 'en' for English)
-wikipedia.set_lang("en") 
+def main():
+    # Set the language for the Wikipedia instance (e.g., 'en' for English)
+    wikipedia.set_lang("en") 
 
-# Set while loop flag
-readFlag = True
+    # Set while loop flag
+    dontReadFlag = True
 
-while readFlag:
-    # Get a random article title
-    article_title = wikipedia.random()
+    while dontReadFlag:
+        # Get a random article title
+        article_title = wikipedia.random()
 
-    # Ask for if User wants to Read
-    answer = input(f"Would you like to read {article_title}? (y/n): ")
-    readFlag = switch(answer.lower())
+        # Ask for if User wants to Read
+        dontReadFlag = getUserInput(article_title)
 
-# Fetch the content of the random article
-article_content = wikipedia.page(article_title)
-print(article_content.summary)
+    # Fetch the content of the random article
+    article_content = wikipedia.page(article_title)
+    print(article_content.summary)
+
+if __name__ == '__main__':
+    main()

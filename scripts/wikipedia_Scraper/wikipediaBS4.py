@@ -1,34 +1,42 @@
 import requests # API for interacting with internet
 from bs4 import BeautifulSoup # web scraper
 
-def switch(answer):
-    # switch statement to determine if user wants to read the article
-    if answer == "y":
+def getUserInput(article_title):
+    answer = input(f"Would you like to read {article_title}? (yes/no): ").lower()
+    
+    if answer == 'yes':
         return False
-    elif answer == "yes":
+    elif answer == 'y':
         return False
-    elif answer == "n":
+    elif answer == 'no':
+        return True 
+    elif answer == 'n':
         return True
-    elif answer == "no":
-        return True
+    else:
+        print("Invalid input. Please enter 'yes' or 'no'.")
+        getUserInput(article_title)  # Recursive call to prompt again
 
-readFlag = True
 
-while readFlag:
-    # Get random wikipedia article
-    base_url = "https://en.wikipedia.org"
-    random_article_url = base_url + "/wiki/Special:Random"
-    response = requests.get(random_article_url)
+def main():
+    dontReadFlag = True
 
-    # Parse HTML 
-    soup = BeautifulSoup(response.content, "html.parser")
+    while dontReadFlag:
+        # Get random wikipedia article
+        base_url = "https://en.wikipedia.org"
+        random_article_url = base_url + "/wiki/Special:Random"
+        response = requests.get(random_article_url)
 
-    # Extract Title
-    article_title = soup.title.string
+        # Parse HTML 
+        soup = BeautifulSoup(response.content, "html.parser")
 
-    # Ask for if User wants to Read
-    answer = input(f"Would you like to read {article_title}? (y/n): ")
-    readFlag = switch(answer.lower())
+        # Extract Title
+        article_title = soup.title.string
 
-# Extract First Paragraph
-print(soup.find('p').text)
+        # Ask for if User wants to Read
+        dontReadFlag = getUserInput(article_title)
+
+    # Extract First Paragraph
+    print(soup.find('p').text)
+
+if __name__ == '__main__':
+    main()
