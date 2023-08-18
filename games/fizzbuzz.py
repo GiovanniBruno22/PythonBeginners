@@ -1,15 +1,14 @@
 def fizzbuzz():
     number = int(input("Choose a number: "))
-    for i in range(number):
-        print(i)
-    if number % 3 == 0 and number % 5 == 0:
-        print("FizzBuzz")
-    elif number % 3 == 0:
-        print("Fizz")
-    elif number % 5 == 0:
-        print("Buzz")
-    else:
-        print(number)
+    for i in range(1,number+1):
+        if i % 3 == 0 and i % 5 == 0:
+            print("FizzBuzz")
+        elif i % 3 == 0:
+            print("Fizz")
+        elif i % 5 == 0:
+            print("Buzz")
+        else:
+            print(i)
 
 if __name__ == "__main__":
     fizzbuzz()
