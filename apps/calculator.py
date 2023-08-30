@@ -28,3 +28,5 @@ elif c == 'multiply':
     print(f'result: {multiply(a,b)}')
 elif c == 'divide':
     print(f'result: {divide(a,b)}')
+else:
+    print(f'Invalid operation,choose correct operation')
