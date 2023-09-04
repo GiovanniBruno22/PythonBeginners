@@ -10,7 +10,7 @@ WIDTH, HEIGHT = 400, 400
 GRID_SIZE = 20
 GRID_WIDTH = WIDTH // GRID_SIZE
 GRID_HEIGHT = HEIGHT // GRID_SIZE
-SNAKE_SPEED = 15
+SNAKE_SPEED = 5
 GAME_OVER_DELAY = 1500  # Delay in milliseconds (1.5 seconds) before closing the game over screen
 
 # Colors
