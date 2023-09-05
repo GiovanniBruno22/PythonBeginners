@@ -11,6 +11,6 @@ def sample_code():
     print ("This is a string")
     return "The meaning of life", 42
 
-#Run main() when this file is executed
+#Run print_contents() when this file is executed
 if __name__ == "__main__":
     print_contents()
