@@ -29,9 +29,10 @@ frame_font = ("Garamond", 14)
 task_name_str = StringVar()
 search_str = StringVar()
 
-# the functions
-# add a task to database
 def submit_task():
+    """
+    add a task to database
+    """
     global task_name_str, task_detail_entry
     global cursor
     task = task_name_str.get()
@@ -52,16 +53,20 @@ def submit_task():
         clear_fields()
 
 
-# list all tasks
 def list_tasks():
+    """
+    list all tasks
+    """
     curr = connector.execute("SELECT TASK FROM Todo_List")
     fetch = curr.fetchall()
     for data in fetch:
         listbox.insert(END, data[0])
 
 
-# delete a task
 def delete_task():
+    """
+    delete a task
+    """
     global listbox, connector, cursor
 
     if not listbox.get(ACTIVE):
@@ -76,8 +81,10 @@ def delete_task():
     clear_fields()
 
 
-# delete all tasks
 def delete_all_tasks():
+    """
+    delete all tasks
+    """
     cursor.execute("DELETE FROM Todo_list")
     connector.commit()
 
@@ -86,8 +93,10 @@ def delete_all_tasks():
     list_tasks()
 
 
-# view selected task details
 def view_task():
+    """
+    view selected task details
+    """
     global task_name_str, task_detail_entry, listbox
 
     curr = cursor.execute("SELECT * FROM Todo_List WHERE TASK=?", (listbox.get(ACTIVE),))
@@ -99,8 +108,10 @@ def view_task():
     task_detail_entry.insert(END, values[2])
 
 
-# clear input fields
 def clear_fields():
+    """
+    clear input fields
+    """
     global task_name_str, task_detail_entry, listbox
 
     listbox.select_clear(0, END)
@@ -110,8 +121,10 @@ def clear_fields():
     task_detail_entry.delete(1.0, END)
 
 
-# search a task
 def search_task():
+    """
+    search a task
+    """
     global task_name_str, task_detail_entry, listbox
 
     query = str(search_str.get())
