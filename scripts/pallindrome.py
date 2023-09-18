@@ -8,8 +8,12 @@ def is_symmetrical(input_str):
             return False
     return True
 
-user_input = input("Enter a string: ")
-if is_symmetrical(user_input):
-    print(f"'{user_input}' is a palindrome.")
-else:
-    print(f"'{user_input}' is not a palindrome.")
+def main():
+    user_input = input("Enter a string: ")
+    if is_symmetrical(user_input):
+        print(f"'{user_input}' is a palindrome.")
+    else:
+        print(f"'{user_input}' is not a palindrome.")
+
+if __name__ == '__main__':
+    main()
