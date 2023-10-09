@@ -1,63 +1,70 @@
-def isEmpty(stk):
-    if stk==[]:
-        True
-    else:
-        return False
-def Push(stk,item):
-    stk.append(item)
-    top=len(stk)-1
-def Pop(stk):
-    if isEmpty(stk):
-        return 'Underflow'
-    else:
-        item=stk.pop()
-        if len(stk)==0:
-            top=None
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def is_empty(self):
+        return not self.stack
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def pop(self):
+        if self.is_empty():
+            return 'Underflow'
         else:
-            top=len(stk)-1
-        return item
-def Peek(stk):
-    if isEmpty(stk):
-        return 'Underflow'
-    else:
-        top=len(stk)-1
-        return stk[top]
-def disp(stk):
-    if isEmpty(stk):
-        print('stack empty')
-    else:
-        top=len(stk)-1
-        print(stk[top],'<-top')
-        for a in range(top-1,-1,-1):
-            print(stk[a])
-stack=[]
-top=None
-while True:
-    print('\n\nStackOperations:')
-    print('1.Push')
-    print('2.Pop')
-    print('3.Peek')
-    print('4.Display Stack')
-    print('5.exit')
-    ch=int(input('Enter your choice:'))
-    if ch==1:
-        item=int(input('Enter item:'))
-        Push(stack,item)
-    elif ch==2:
-        item=Pop(stack)
-        if item=='Underflow':
-            print('Stack is empty')
+            item = self.stack.pop()
+            return item
+
+    def peek(self):
+        if self.is_empty():
+            return 'Underflow'
         else:
-            print('popped item is:',item)
-    elif ch==3:
-        item=Peek(stack)
-        if item=='Underflow':
-            print('Stack is empty')
+            top = len(self.stack) - 1
+            return self.stack[top]
+
+    def __repr__(self):
+        if self.is_empty():
+            return 'Stack is empty'
         else:
-            print('topmost item is:',item)
-    elif ch==4:
-        disp(stack)
-    elif ch==5:
-        break
-    else:
-        print('invalid choice')
+            top = len(self.stack) - 1
+            stack_str = f'{self.stack[top]} <-top\n'
+            for i in range(top - 1, -1, -1):
+                stack_str += str(self.stack[i]) + '\n'
+            return stack_str
+
+def main():
+    stack = Stack()
+
+    while True:
+        print('\n\nStack Operations:')
+        print('1. Push')
+        print('2. Pop')
+        print('3. Peek')
+        print('4. Display Stack')
+        print('5. Exit')
+        ch = int(input('Enter your choice:'))
+
+        if ch == 1:
+            item = int(input('Enter item:'))
+            stack.push(item)
+        elif ch == 2:
+            item = stack.pop()
+            if item == 'Underflow':
+                print('Stack is empty')
+            else:
+                print('Popped item is:', item)
+        elif ch == 3:
+            item = stack.peek()
+            if item == 'Underflow':
+                print('Stack is empty')
+            else:
+                print('Topmost item is:', item)
+        elif ch == 4:
+            print(stack)
+        elif ch == 5:
+            break
+        else:
+            print('Invalid choice')
+
+if __name__ == '__main__':
+    main()
