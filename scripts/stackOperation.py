@@ -1,4 +1,5 @@
 def isEmpty(stk):
+    return not stk
     if stk==[]:
         True
     else:
