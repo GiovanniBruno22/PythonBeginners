@@ -44,9 +44,18 @@ def main():
         print('5. Exit')
         ch = int(input('Enter your choice:'))
 
+        try:
+            ch = int(ch)
+        except ValueError:
+            print('Invalid input. Please enter a valid choice.')
+            continue
+
         if ch == 1:
-            item = int(input('Enter item:'))
-            stack.push(item)
+            try:
+                item = int(input('Enter item:'))
+                stack.push(item)
+            except ValueError:
+                print('Invalid input. Please enter a valid integer.')
         elif ch == 2:
             item = stack.pop()
             if item == 'Underflow':
