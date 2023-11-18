@@ -1,3 +1,5 @@
+"""A calculator app with Kivy"""
+
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -5,7 +7,10 @@ from kivy.uix.textinput import TextInput
 
 
 class CalculatorApp(App):
+    """The main app body"""
     def build(self):
+        """Initilaize the app"""
+
         self.operators = ['+', '-', '*', '/']
         self.last_was_operator = None
         self.last_button = None
@@ -46,6 +51,7 @@ class CalculatorApp(App):
         return layout
 
     def on_button_press(self, instance):
+        """Act when a button is pressed"""
         current = self.result.text
         button_text = instance.text
 
@@ -64,6 +70,7 @@ class CalculatorApp(App):
             self.result.text = 'Error'
 
     def on_clear(self, instance):
+        """Clear the screen"""
         self.result.text = ''
 
     def on_mod(self, instance):
