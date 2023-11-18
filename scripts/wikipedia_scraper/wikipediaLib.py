@@ -1,6 +1,6 @@
 import wikipedia
 
-def getUserInput(article_title):
+def get_user_input(article_title):
     answer = input(f"Would you like to read {article_title}? (yes/no): ").lower()
     
     if answer == 'yes':
@@ -13,21 +13,21 @@ def getUserInput(article_title):
         return True
     else:
         print("Invalid input. Please enter 'yes' or 'no'.")
-        getUserInput(article_title)  # Recursive call to prompt again
+        get_user_input(article_title)  # Recursive call to prompt again
 
 def main():
     # Set the language for the Wikipedia instance (e.g., 'en' for English)
     wikipedia.set_lang("en") 
 
     # Set while loop flag
-    dontReadFlag = True
+    do_not_read = True
 
-    while dontReadFlag:
+    while do_not_read:
         # Get a random article title
         article_title = wikipedia.random()
 
         # Ask for if User wants to Read
-        dontReadFlag = getUserInput(article_title)
+        do_not_read = get_user_input(article_title)
 
     # Fetch the content of the random article
     article_content = wikipedia.page(article_title)
