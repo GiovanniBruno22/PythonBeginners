@@ -1,7 +1,7 @@
 import random
 
 def total_bill(amount, tip_percentage):
-    '''
+    ''
     Calculate the total amount due for dinner, including the tip.
 
     Args: amount (float): The total amount for dinner before adding the tip.
