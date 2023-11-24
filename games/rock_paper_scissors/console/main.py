@@ -1,3 +1,7 @@
+"""A rock paper scissors game in Python using the 
+command line
+"""
+
 import random
 
 
@@ -5,7 +9,7 @@ def rock_paper_scissors():
     r = "rock"
     p = "paper"
     s = "scissor"
-    all_choices = [r, p, s]
+    all_choices = (r, p, s)
 
     user = input(f"Enter a choice ({r}, {p}, {s}): ")
 
@@ -15,7 +19,7 @@ def rock_paper_scissors():
 
     computer = random.choice(all_choices)
 
-    print(f"User chose {user}, computer chose {computer}")
+    print(f"User chose {user}, and the computer chose {computer}")
 
     if user == computer:
         print(f"It's tie...")
@@ -24,8 +28,8 @@ def rock_paper_scissors():
     else:
         print(f"You lost!")
 
-    play_again = input("Do you want to play again? (y/n): ")
-    if play_again == "y":
+    play_again = input("Do you want to play again? (y/n): ").lower()
+    if play_again.startswith("y"):
         rock_paper_scissors()
     else:
         print("Thanks for playing!")

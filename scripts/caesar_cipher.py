@@ -1,4 +1,4 @@
-Cipher = {
+cipher = {
   "A": "X",
   "B": "Y",
   "C": "Z",
@@ -35,9 +35,9 @@ def main():
   for a in text:
     if a.isalpha():
       if a.islower():
-        output += Cipher[a.upper()].lower()
+        output += cipher[a.upper()].lower()
       else:
-        output += Cipher[a.upper()]
+        output += cipher[a.upper()]
     else:
       output += a
 

@@ -1,32 +1,47 @@
+"""
+Dice Roller
+
+Roll an amount of dice with an amount of sides chosen by the user.
+"""
+
 import random
 
-class DiceSimulator:
-    def __init__(self, dices: int, dice_faces: int) -> None:
-        self.dices = dices
-        self.dice_faces = dice_faces
-    
-    def __str__(self) -> str:
-        return f"Dices: {self.dices} Number of faces: {self.dice_faces}"
-    
-    def get_dices(self) -> int:
-        return self.dices
-    
-    def get_faces(self) -> int:
-        return self.dice_faces
-    
-    def roll(self) -> list:
-        total_rolls = []
-        
-        for _ in range(self.dices):
-            total_rolls.append(random.randint(1, self.dice_faces))
+def main():
+    """The main function of the program.
+    Ask the user how many dice, an roll that many dice."""
+    print('How many dice would you like to roll?')
 
-        return total_rolls
-    
+    try:
+        amount_of_dice = int(input('> ')) # try to convert the answer to an int
+    except ValueError:
+        print('Not a valid number.') # if it doesn't work, return 'y'
+        return 'y' # returning this causes the prgram to run again
 
-if __name__ == "__main__":
-    dice = DiceSimulator(2, 6)
-    print(dice)
+    print('How many sides should the dice have?')
 
-    total = dice.roll()
-    print(f"{total} total: {sum(total)}")
+    try:
+        amount_of_sides = int(input('> ')) # same as above, pretty much
+    except ValueError:
+        print('Not a valid number.')
+        return 'y'
 
+    total = 0
+
+    for i in range(amount_of_dice):
+        # add a random number between 1 and the number of sides to the total
+        total += random.randint(1, amount_of_sides)
+
+    print('Total:', total)
+
+    again = ''
+    while again not in ['y', 'n']:
+        print('Would you like to go again? (Y/N)')
+        again = input('> ').lower()
+
+    return again
+
+while True:
+    if main() == 'n': # if the user does not want to play again,
+        break # stop and exit
+
+print('Thanks for playing!')

@@ -1,14 +1,14 @@
 import random
 
 # Simple terminal hangman game with ASCII art
-def choose_random_word():
+def choose_random_word() -> str:
     """Choose a random word from a list of words for the player to guess in our
         hangman game.
     """
-    word_list = ["hangman", "python", "programming", "developer", "challenge", "knowledge"]
+    word_list = ("hangman", "python", "programming", "developer", "challenge", "knowledge")
     return random.choice(word_list)
 
-def display_word(word, guessed_letters):
+def display_word(word: str, guessed_letters):
     """Chooses a random word between the ones listed in word_List
         Returns: (str) the chosen word.
     """
